@@ -32,7 +32,6 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
     `*[_type == "blog" && slug.current == $slug][0]{title, slug, publishedAt, body, mainImage, category}`,
     { slug }
   );
-
   if (!blog) {
     notFound(); // Show 404 page if the blog doesn't exist
   }
@@ -52,6 +51,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
       return null;
     });
   };
+
 
   return (
     <section className="text-gray-600 body-font">
