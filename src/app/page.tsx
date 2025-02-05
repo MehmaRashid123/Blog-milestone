@@ -1,3 +1,4 @@
+import BlogDetailPage from "./blog/[slug]/page";
 import BlogPage from "./blog/page";
 import Hero from "./component/Hero";
 import Testimonial from "./component/Testimonial";
