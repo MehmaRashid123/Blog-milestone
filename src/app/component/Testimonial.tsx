@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Testimonial = () => {
   return (
@@ -11,13 +11,13 @@ const Testimonial = () => {
             <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
               <div className="h-full text-center">
                 <p className="leading-relaxed mb-4">
-                  "I never thought an AI could understand my writing style so well! It helps me generate ideas and streamline my workflow, making my blog posts more engaging and efficient."
+                  &quot;I never thought an AI could understand my writing style so well! It helps me generate ideas and streamline my workflow, making my blog posts more engaging and efficient.&quot;
                 </p>
                 <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
                 <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
                   Sarah T
                 </h2>
-                <p className="text-gray-500">Blogger & Content Creator</p>
+                <p className="text-gray-500">Blogger &amp; Content Creator</p>
               </div>
             </div>
 
@@ -25,7 +25,7 @@ const Testimonial = () => {
             <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
               <div className="h-full text-center">
                 <p className="leading-relaxed mb-4">
-                  "This AI-powered platform has completely changed the way I approach content creation. It offers insightful suggestions and generates creative ideas that I would never have thought of!"
+                  &quot;This AI-powered platform has completely changed the way I approach content creation. It offers insightful suggestions and generates creative ideas that I would never have thought of!&quot;
                 </p>
                 <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
                 <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
@@ -39,7 +39,7 @@ const Testimonial = () => {
             <div className="lg:w-1/3 lg:mb-0 p-4">
               <div className="h-full text-center">
                 <p className="leading-relaxed mb-4">
-                  "As a writer, I'm always looking for ways to stay ahead of the curve. This AI not only improves my writing but also keeps me updated with the latest trends, ensuring my blog posts are always relevant and engaging."
+                  &quot;As a writer, I&apos;m always looking for ways to stay ahead of the curve. This AI not only improves my writing but also keeps me updated with the latest trends, ensuring my blog posts are always relevant and engaging.&quot;
                 </p>
                 <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
                 <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">

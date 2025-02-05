@@ -32,7 +32,7 @@ const ContactPage = () => {
       } else {
         setStatus("Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch (err) {
       setStatus("Error sending message.");
     }
   };
