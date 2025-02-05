@@ -1,23 +1,25 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { client } from "@/sanity/lib/client"; // Adjust path if needed
-import imageUrlBuilder from '@sanity/image-url';
+import { client } from "@/sanity/lib/client";
+import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
+import Image from "next/image";
 
+// Define a Blog type
 interface Blog {
   title: string;
   slug: { current: string };
   publishedAt: string;
-  body: Array<any>;
-  mainImage: any;
+  body: { children: { text: string }[] }[];
+  mainImage: { asset: { _ref: string }; alt?: string };
   category: string;
 }
 
 // Create an image URL builder
 const builder = imageUrlBuilder(client);
 
-function urlFor(source: any) {
-  return builder.image(source);
+function urlFor(source: Blog["mainImage"]) {
+  return builder.image(source).url();
 }
 
 const BlogPage = () => {
@@ -25,12 +27,12 @@ const BlogPage = () => {
 
   useEffect(() => {
     client
-      .fetch('*[_type == "blog"]{title, slug, publishedAt, body, mainImage, category}')
+      .fetch<Blog[]>('*[_type == "blog"]{title, slug, publishedAt, body, mainImage, category}')
       .then((data) => {
         setBlogs(data);
       })
-      .catch((err) => {
-        console.error("Error fetching blog data:", err);
+      .catch((error) => {
+        console.error("Error fetching blog data:", error);
       });
   }, []);
 
@@ -41,21 +43,29 @@ const BlogPage = () => {
           {blogs.map((blog) => (
             <div key={blog.slug.current} className="p-4 md:w-1/3">
               <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <img
-                  className="lg:h-48 md:h-36 w-full object-cover object-center"
-                  src={urlFor(blog.mainImage).url()} // Use urlFor to get the image URL
-                  alt={blog.mainImage?.alt || "Blog Image"}
-                />
+                {blog.mainImage?.asset && (
+                  <Image
+                    className="lg:h-48 md:h-36 w-full object-cover object-center"
+                    src={urlFor(blog.mainImage)}
+                    alt={blog.mainImage.alt || "Blog Image"}
+                    width={500}
+                    height={300}
+                    priority
+                  />
+                )}
                 <div className="p-6">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     {blog.category}
                   </h2>
-                  <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{blog.title}</h1>
+                  <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+                    {blog.title}
+                  </h1>
                   <p className="leading-relaxed mb-3">
-                    {blog.body[0]?.children[0]?.text || "No description available"}
+                    {blog.body?.[0]?.children?.[0]?.text || "No description available"}
                   </p>
                   <div className="flex items-center flex-wrap">
-                    <Link href={`/blog/${blog.slug.current}`}
+                    <Link
+                      href={`/blog/${blog.slug.current}`}
                       className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
                     >
                       Learn More
